@@ -1,0 +1,41 @@
+put this in here /etc/nginx/sites-available/my-react-app
+
+
+
+
+server {
+    listen 80;
+    server_name 20.228.138.216;
+
+    location / {
+        root /home/username/az-hosted-website-project/build;
+        index index.html;
+        try_files $uri $uri/ /index.html;
+    }
+
+    error_page 404 /index.html;
+
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js|woff|woff2|ttf|svg|eot)$ {
+        root /home/username/az-hosted-website-project/build;
+        access_log off;
+        expires max;
+    }
+}
+
+
+
+-----------------------------------------------------------------
+
+rm -rf node_modules/
+rm package-lock.json
+npm cache clean --force
+sudo nginx -t
+sudo systemctl restart nginx
+
+node -v  should be 14 or higher
+
+npm install -g n   
+n latest
+node -v
+
+close old terminal and open new one
