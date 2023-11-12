@@ -1,30 +1,29 @@
 /* src/App.css */
 .app-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f0f0f0; /* Set your desired background color */
+  text-align: center;
+  padding: 20px;
 }
 
 .greeting {
-  font-size: 24px; /* Set your desired font size */
-  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.ip-address {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
 }
 
 .random-button {
-  font-size: 16px; /* Set your desired font size */
+  background-color: #61dafb;
+  color: white;
   padding: 10px;
-  margin-top: 10px;
+  font-size: 16px;
   cursor: pointer;
-  background-color: #007bff; /* Set your desired button background color */
-  color: #ffffff; /* Set your desired button text color */
-  border: none;
-  border-radius: 5px;
 }
 
 .random-number {
-  font-size: 18px; /* Set your desired font size */
+  font-size: 18px;
   margin-top: 10px;
 }
