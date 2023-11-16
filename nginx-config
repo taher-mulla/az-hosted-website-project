@@ -38,4 +38,37 @@ npm install -g n
 n latest
 node -v
 
+need to add this for IP 
+npm install axios
+
+
 close old terminal and open new one
+
+
+
+
+Ram needs to be large enough
+
+root@level1:/home/username# sqlcmd -S localhost -U 'sa' -P 'Password123456!' -C
+1> SELECT name
+2> FROM sys.databases;
+3> Go
+name
+--------------------------------------------------------------------------------------------------------------------------------
+master
+tempdb
+model
+msdb
+
+(4 rows affected)
+1> CREATE DATABASE level1;
+2> Go
+1> USE level1;
+2> Go
+Changed database context to 'level1'.
+1> CREATE TABLE visitors (time DATE, ip_address NVARCHAR(50));
+2> Go
+1> SELECT * FROM visitors;
+2> Go
+time             ip_address
+---------------- --------------------------------------------------
