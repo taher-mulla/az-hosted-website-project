@@ -50,6 +50,32 @@ app.post("/insertData", async (req, res) => {
   }
 });
 
+// Endpoint to retrieve data from the database
+app.get("/getData", async (req, res) => {
+  try {
+    // Connect to the database
+    await sql.connect(config);
+
+    // Execute the SQL query to retrieve data
+    const result = await sql.query`
+      SELECT time, ip_address
+      FROM visitors
+      ORDER BY time DESC;
+    `;
+
+    console.log("Data retrieved successfully:", result);
+
+    // Send the retrieved data in the response
+    res.status(200).json(result.recordset);
+  } catch (error) {
+    console.error("Error retrieving data:", error);
+    res.status(500).send("Internal Server Error");
+  } finally {
+    // Close the SQL connection
+    sql.close();
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

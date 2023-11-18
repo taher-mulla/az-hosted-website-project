@@ -1,12 +1,39 @@
 /* src/App.css */
-.app-container {
+
+.greeting-container {
   text-align: center;
-  padding: 20px;
+  margin-top: 20px;
 }
 
 .greeting {
-  font-size: 20px;
+  font-size: 24px;
   margin-bottom: 10px;
+}
+
+.sub-greeting {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.random-button {
+  font-size: 16px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.random-button:hover {
+  background-color: #2980b9;
+}
+
+
+.app-container {
+  text-align: center;
+  padding: 20px;
 }
 
 .ip-address {
@@ -15,15 +42,55 @@
   margin-bottom: 10px;
 }
 
-.random-button {
-  background-color: #61dafb;
-  color: white;
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
 .random-number {
   font-size: 18px;
   margin-top: 10px;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full height of the viewport */
+}
+
+.outer-box {
+}
+
+.db-data {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%; /* Adjust as needed */
+  margin: 0 auto; /* Center the table horizontally */
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center; /* Center text in each cell */
+}
+
+th {
+  background-color: #f2f2f2;
+}
+ 
+/* Increase the width of columns */
+th:nth-child(1),
+td:nth-child(1) {
+  width: 300px; /* Adjust as needed */
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 500px; /* Adjust as needed */
+}
+
+.table-container {
+  max-height: 400px; /* Set the max height for the table container */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
