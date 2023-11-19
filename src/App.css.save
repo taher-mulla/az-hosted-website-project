@@ -1,0 +1,62 @@
+/* src/App.css */
+.app-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.greeting {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.ip-address {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.random-button {
+  background-color: #61dafb;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.random-number {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full height of the viewport *.outer-box {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.db-data {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+

@@ -9,29 +9,37 @@ function App() {
   const [buttonPressed, setButtonPressed] = useState(false);
 
   const formatDateString = (dateString) => {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
+  const options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
   };
+
+  return new Date(dateString).toLocaleDateString(undefined, options);
+};
+
 
   useEffect(() => {
     axios.get("https://api.ipify.org?format=json").then((response) => {
       setIpAddress(response.data.ip);
     });
-
-    // Fetch data from the server when the component mounts
-    fetchDbData();
   }, []);
 
   const generateRandomNumber = async () => {
     const newRandomNumber = Math.floor(Math.random() * 100) + 1;
     setRandomNumber(newRandomNumber);
     setButtonPressed(true);
+    // Fetch data from the server when the component mounts
+    fetchDbData();
 
     try {
       // Send a request to the server to insert data
       await axios.post("http://20.228.138.216:5000/insertData", {
         ip: ipAddress,
-        date: new Date(),
+        date: new Date().toISOString(),
       });
 
       console.log("Data inserted on the server");
