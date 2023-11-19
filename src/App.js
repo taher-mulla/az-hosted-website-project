@@ -32,8 +32,6 @@ function App() {
     const newRandomNumber = Math.floor(Math.random() * 100) + 1;
     setRandomNumber(newRandomNumber);
     setButtonPressed(true);
-    // Fetch data from the server when the component mounts
-    fetchDbData();
 
     try {
       // Send a request to the server to insert data
@@ -46,6 +44,10 @@ function App() {
     } catch (error) {
       console.error("Error inserting data on the server:", error);
     }
+
+    // Fetch data from the server when the component mounts
+    await fetchDbData();
+
   };
   
   // Function to fetch data from the server
