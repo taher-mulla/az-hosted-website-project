@@ -7,20 +7,20 @@ function App() {
   const [ipAddress, setIpAddress] = useState(null);
   const [dbData, setDbData] = useState(null);
   const [buttonPressed, setButtonPressed] = useState(false);
+  const [backendServerNumber, setBackendServerNumber] = useState(false);
 
   const formatDateString = (dateString) => {
-  const options = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
+    const options = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    };
+
+    return new Date(dateString).toLocaleDateString(undefined, options);
   };
-
-  return new Date(dateString).toLocaleDateString(undefined, options);
-};
-
 
   useEffect(() => {
     axios.get("https://api.ipify.org?format=json").then((response) => {
@@ -47,9 +47,8 @@ function App() {
 
     // Fetch data from the server when the component mounts
     await fetchDbData();
-
   };
-  
+
   // Function to fetch data from the server
   const fetchDbData = async () => {
     try {
@@ -61,29 +60,48 @@ function App() {
     }
   };
 
+  const fetchServerNumber = async () => {
+    try {
+      const resp = await axios.get("https://<ipaddress>/getServerNumber");
+      setBackendServerNumber(resp.data);
+      console.log("backend server number fetched ", resp.data);
+    } catch (error) {
+      console.error("Error fetching data from the server:", error);
+    }
+  };
+
   return (
     <div className="app-container">
       <div className="greeting-container">
         <p className="greeting">
-           Hi, my name is Taher. Welcome to Level 1 of my Web-App!
+          Hey there! Taher here. You're currently on Nginx Server 1.
         </p>
         <p className="sub-greeting">
-          You are exploring <strong>The Monolithic System</strong>.
+          We're transitioning from a monolithic system, where everything is on a
+          single VM, to a more distributed architecture.
+        </p>
+        <p className="sub-greetings">
+          Various services will operate on multiple VMs, resembling a
+          microservices setup. Reload this page to have more fun!
         </p>
         <button className="random-button" onClick={generateRandomNumber}>
-          Become a Click Commander!
+          Explore Level 2!
         </button>
       </div>
 
       {randomNumber && <p className="random-number">{ipAddress}</p>}
-      
+      {randomNumber && (
+        <p className="random-number">
+          Reply was taken from server {backendServerNumber}, visitors log:
+        </p>
+      )}
+
       <div className="outer-box">
         <div className="db-data">
-          {buttonPressed && <h2>Click Commanders</h2>}
           {buttonPressed && dbData && (
-          <div className="visitor-count">
-            <p>Total : {dbData.length}</p>
-          </div>
+            <div className="visitor-count">
+              <p>Total : {dbData.length}</p>
+            </div>
           )}
           {buttonPressed && dbData && (
             <div className="table-container">
