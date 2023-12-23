@@ -8,19 +8,21 @@ function App() {
   const [dbData, setDbData] = useState(null);
   const [buttonPressed, setButtonPressed] = useState(false);
   const [backendServerNumber, setBackendServerNumber] = useState(false);
+  const serverIp = "http://20.157.67.89:80/";
 
   const formatDateString = (dateString) => {
-    const options = {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-    };
-
-    return new Date(dateString).toLocaleDateString(undefined, options);
+  const options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
   };
+
+  return new Date(dateString).toLocaleDateString(undefined, options);
+};
+
 
   useEffect(() => {
     axios.get("https://api.ipify.org?format=json").then((response) => {
@@ -35,7 +37,7 @@ function App() {
 
     try {
       // Send a request to the server to insert data
-      await axios.post("http://20.228.138.216:5000/insertData", {
+      await axios.post(serverIp+"insertData", {
         ip: ipAddress,
         date: new Date().toISOString(),
       });
@@ -47,12 +49,13 @@ function App() {
 
     // Fetch data from the server when the component mounts
     await fetchDbData();
+
   };
 
   // Function to fetch data from the server
   const fetchDbData = async () => {
     try {
-      const response = await axios.get("http://20.228.138.216:5000/getData");
+      const response = await axios.get(serverIp+"getData");
       setDbData(response.data);
       console.log("Data fetched from the server:", response.data);
     } catch (error) {
@@ -62,13 +65,14 @@ function App() {
 
   const fetchServerNumber = async () => {
     try {
-      const resp = await axios.get("https://<ipaddress>/getServerNumber");
+      const resp = await axios.get(serverIp+"getServerNumber");
       setBackendServerNumber(resp.data);
       console.log("backend server number fetched ", resp.data);
-    } catch (error) {
-      console.error("Error fetching data from the server:", error);
+    } catch (error){
+     console.error("Error fetching data from the server:", error);
     }
   };
+
 
   return (
     <div className="app-container">
@@ -77,12 +81,10 @@ function App() {
           Hey there! Taher here. You're currently on Nginx Server 1.
         </p>
         <p className="sub-greeting">
-          We're transitioning from a monolithic system, where everything is on a
-          single VM, to a more distributed architecture.
+          We're transitioning from a monolithic system, where everything is on a single VM, to a more distributed architecture.
         </p>
         <p className="sub-greetings">
-          Various services will operate on multiple VMs, resembling a
-          microservices setup. Reload this page to have more fun!
+          Various services will operate on multiple VMs, resembling a microservices setup. Reload this page to have more fun!
         </p>
         <button className="random-button" onClick={generateRandomNumber}>
           Explore Level 2!
@@ -90,18 +92,14 @@ function App() {
       </div>
 
       {randomNumber && <p className="random-number">{ipAddress}</p>}
-      {randomNumber && (
-        <p className="random-number">
-          Reply was taken from server {backendServerNumber}, visitors log:
-        </p>
-      )}
+      {randomNumber && <p className="random-number">Reply was taken from server {backendServerNumber}, visitors log:</p>}
 
       <div className="outer-box">
         <div className="db-data">
           {buttonPressed && dbData && (
-            <div className="visitor-count">
-              <p>Total : {dbData.length}</p>
-            </div>
+          <div className="visitor-count">
+            <p>Total : {dbData.length}</p>
+          </div>
           )}
           {buttonPressed && dbData && (
             <div className="table-container">
@@ -128,5 +126,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
