@@ -1,0 +1,22 @@
+server {
+    listen 80;
+    server_name 20.124.151.25;
+
+    location / {
+        root /home/username/az-hosted-website-project/build;
+        index index.html;
+        try_files $uri $uri/ /index.html;
+    }
+
+    error_page 404 /index.html;
+
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js|woff|woff2|ttf|svg|eot)$ {
+        root /home/username/az-hosted-website-project/build;
+        access_log off;
+        expires max;
+
+        add_header Cache-Control "no-cache, no-store, must-revalidate";
+        add_header Pragma "no-cache";
+        add_header Expires "0";
+    }
+}
