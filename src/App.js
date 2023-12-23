@@ -49,6 +49,7 @@ function App() {
 
     // Fetch data from the server when the component mounts
     await fetchDbData();
+    await fetchServerNumber();
 
   };
 
@@ -126,3 +127,5 @@ function App() {
     </div>
   );
 }
+
+export default App;
