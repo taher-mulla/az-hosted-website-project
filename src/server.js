@@ -4,7 +4,7 @@ const sql = require("mssql");
 const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 80;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 // Configuration for SQL Server
@@ -48,6 +48,11 @@ app.post("/insertData", async (req, res) => {
     // Close the SQL connection
     sql.close();
   }
+});
+
+
+app.get("/getServerNumber", async (req, res) => {
+  res.status(200).send("1");
 });
 
 // Endpoint to retrieve data from the database
