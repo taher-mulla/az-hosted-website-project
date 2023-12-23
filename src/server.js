@@ -38,6 +38,7 @@ app.post("/insertData", async (req, res) => {
       VALUES (${date}, ${ip});
     `;
 
+    console.log("Data inserted successfully date put is:", date);
     console.log("Data inserted successfully:", result);
 
     res.status(200).send("Data inserted successfully");
